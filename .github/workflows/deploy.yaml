@@ -13,29 +13,30 @@ jobs:
 
       - name: Build and bundle the application
         run: |
-          # build the application
           rustup update stable
           rustup default stable
           cargo build --release
 
-          # make important directories
-          mkdir package
-          mkdir package/www
+      - name: Make package directories
+        run: |
+          mkdir ./package
+          mkdir ./package/www
 
-          # copy important things into it
+      - name: Copy most important files to the package directory
+        run: |
           cp ./target/release/deploy-experiment ./package/
           cp -a ./public ./package
           cp ./package* ./package/
           cp ./www/root.html ./package/www/
           cp ./run.sh ./package/
           cp ./squarecloud.app ./package/
-
-          # create a fake ts file so that squarecloud recognizes nodejs
           echo "console.log('run')" > ./package/main.ts
+      
+      - name: Move to package directory
+        run: cd package
 
       - name: Setup Square Cloud
         uses: squarecloudofc/github-action@v2
         with:
-          workdir: ./package/
           run: commit ${{ secrets.SQUARE_APPLICATION_ID }} --restart
           token: ${{ secrets.SQUARE_TOKEN }}
