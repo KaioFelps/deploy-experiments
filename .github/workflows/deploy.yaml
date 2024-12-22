@@ -32,10 +32,10 @@ jobs:
 
           # create a fake ts file so that squarecloud recognizes nodejs
           echo "console.log('run')" > ./package/main.ts
+
       - name: Setup Square Cloud
-        working-directory: ./package
         uses: squarecloudofc/github-action@v2
-        # in the run command you can add the --restart flag to restart your application after the commit 
+        working-directory: ./package/
         with:
           run: commit ${{ secrets.SQUARE_APPLICATION_ID }} --restart
           token: ${{ secrets.SQUARE_TOKEN }}
