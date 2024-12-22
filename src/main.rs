@@ -75,3 +75,12 @@ async fn main() -> std::io::Result<()> {
     .run()
     .await
 }
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn failling_test() {
+        let bar = "bar";
+        assert_eq!("foo", bar);
+    }
+}

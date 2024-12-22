@@ -22,7 +22,7 @@ async fn index(req: HttpRequest) -> impl Responder {
 
 #[get("/hello")]
 async fn hello_world() -> impl Responder {
-    "Hello World"
+    "Another message"
 }
 
 #[get("/foo")]
