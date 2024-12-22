@@ -43,5 +43,8 @@ jobs:
       - name: Commit the application to the host
         run: |
           cd package
+          ls
+          echo "==="
+          echo "==="
           squarecloud login --token=${{ secrets.SQUARE_TOKEN }}
           squarecloud commit ${{ secrets.SQUARE_APPLICATION_ID }} --restart
