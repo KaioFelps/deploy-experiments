@@ -33,4 +33,5 @@ async fn foo(req: HttpRequest) -> impl Responder {
 pub fn register_routes(cfg: &mut ServiceConfig) {
     cfg.service(index);
     cfg.service(hello_world);
+    cfg.service(foo);
 }
