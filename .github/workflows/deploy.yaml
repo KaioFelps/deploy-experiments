@@ -11,11 +11,22 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v4
 
-      - name: Build and bundle the application
+      - name: Install Rust
         run: |
           rustup update stable
           rustup default stable
-          cargo build --release
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+
+      - name: Build the Rust application
+        run: cargo build --release
+      
+      - name: Bundle the front-end assets
+        run: npm run build
 
       - name: Make package directories
         run: |
@@ -26,6 +37,9 @@ jobs:
           cp ./target/release/deploy-experiment ./package/
           if [ -d "./public/" ]; then
             cp -a public package
+          fi
+          if [ -d "./dist/"]; then
+            cp -a dist package
           fi
           cp package-lock.json ./package/
           cp package.json ./package/
@@ -47,4 +61,5 @@ jobs:
           echo "==="
           echo "==="
           squarecloud login --token=${{ secrets.SQUARE_TOKEN }}
-          squarecloud commit ${{ secrets.SQUARE_APPLICATION_ID }} --restart
+          squarecloud commit ${{ secrets.SQUARE_APPLICATION_ID }}
+          squarecloud app restart ${{ secrets.SQUARE_APPLICATION_ID }}
