@@ -36,11 +36,14 @@ jobs:
 
       - name: Copy most important files to the package directory
         run: |
+          ls
+          echo "======================="
+          echo "======================="
           cp ./target/release/deploy-experiment ./package/
-          if [ -d public ]; then
+          if [ -d "public" ]; then
             cp -a public package
           fi
-          if [ -d dist]; then
+          if [ -d "dist" ]; then
             echo "caiu e deveria copiar o dist"
             cp -a dist package
           fi
@@ -50,7 +53,6 @@ jobs:
           cp ./run.sh ./package/
           cp ./squarecloud.app ./package/
           echo "console.log('run')" > ./package/main.ts
-          ls
 
       - name: Setup Square Cloud
         uses: squarecloudofc/github-action@v2
