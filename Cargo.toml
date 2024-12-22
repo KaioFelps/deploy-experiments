@@ -4,3 +4,10 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+inertia-rust = { version = "0.1", features = ["default", "basic-vite-resolver"] }
+actix-web = "4"
+vite-rust = { version = "0.2", features = ["basic-directives"] }
+dotenvy = "0.15.7"
+serde_json = "1.0"
+actix-files = "=0.6.6"
+serde = "1.0.210"
