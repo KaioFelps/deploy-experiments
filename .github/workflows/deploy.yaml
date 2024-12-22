@@ -24,9 +24,7 @@ jobs:
       - name: Copy most important files to the package directory
         run: |
           cp ./target/release/deploy-experiment ./package/
-          if [ -d "./public" ]; then
-            cp -ra ./public ./package/
-          fi
+          cp -a ./public/ ./package/
           cp ./package* ./package/
           cp ./www/root.html ./package/www/
           cp ./run.sh ./package/
