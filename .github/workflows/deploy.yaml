@@ -19,14 +19,13 @@ jobs:
 
       - name: Make package directories
         run: |
-          mkdir ./package
-          mkdir ./package/www
+          mkdir -p ./package/www
 
       - name: Copy most important files to the package directory
         run: |
           cp ./target/release/deploy-experiment ./package/
           if [ -d "./public" ]; then
-            cp -a ./public ./package
+            cp -ra ./public ./package/
           fi
           cp ./package* ./package/
           cp ./www/root.html ./package/www/
