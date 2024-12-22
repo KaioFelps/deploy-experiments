@@ -38,5 +38,10 @@ jobs:
         uses: squarecloudofc/github-action@v2
         with:
           token: ${{ secrets.SQUARE_TOKEN }}
-          workdir: ./package
-          command: commit ${{ secrets.SQUARE_APPLICATION_ID }} --restart
+          install-only: true
+        
+      - name: Commit the application to the host
+        run: |
+          cd package
+          squarecloud login --token=${{ secrets.SQUARE_TOKEN }}
+          squarecloud commit ${{ secrets.SQUARE_APPLICATION_ID }} --restart
