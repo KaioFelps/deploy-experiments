@@ -17,6 +17,12 @@ async fn index(req: HttpRequest) -> impl Responder {
     render_with_props::<Vite>(&req, "Index".into(), props).await
 }
 
+#[get("/hello")]
+async fn hello_world() -> impl Responder {
+    "Hello World"
+}
+
 pub fn register_routes(cfg: &mut ServiceConfig) {
     cfg.service(index);
+    cfg.service(hello_world);
 }
