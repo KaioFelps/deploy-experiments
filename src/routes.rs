@@ -1,7 +1,10 @@
 use std::{collections::HashMap, sync::Arc};
 
 use actix_web::{get, web::ServiceConfig, HttpRequest, Responder};
-use inertia_rust::{actix::render_with_props, InertiaProp};
+use inertia_rust::{
+    actix::{render, render_with_props},
+    InertiaProp,
+};
 use vite_rust::Vite;
 
 #[get("/")]
@@ -20,6 +23,11 @@ async fn index(req: HttpRequest) -> impl Responder {
 #[get("/hello")]
 async fn hello_world() -> impl Responder {
     "Hello World"
+}
+
+#[get("/foo")]
+async fn foo(req: HttpRequest) -> impl Responder {
+    render::<Vite>(&req, "Foo".into()).await
 }
 
 pub fn register_routes(cfg: &mut ServiceConfig) {

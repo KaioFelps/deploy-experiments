@@ -1,5 +1,7 @@
-export default function Index() {
+export default function Index({message}: {message: string}) {
     return (
-        <h1>Hello World</h1>
+        <main>
+            <h1>{message}</h1>
+        </main>
     )
 }
