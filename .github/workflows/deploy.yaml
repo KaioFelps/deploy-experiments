@@ -25,9 +25,9 @@ jobs:
       - name: echo things
         run: |
           ls
-          echo ""
+          echo "==== package ===="
           ls ./package
-          echo ""
+          echo "==== release ===="
           ls ./target/release
 
       - name: Copy most important files to the package directory
