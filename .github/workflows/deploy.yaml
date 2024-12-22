@@ -25,7 +25,7 @@ jobs:
         run: |
           cp ./target/release/deploy-experiment ./package/
           if [ -d "./public/" ]; then
-            cp ./public/ -a ./package/
+            cp -a public package || true
           fi
           cp ./package* ./package/
           cp ./www/root.html ./package/www/
