@@ -36,22 +36,17 @@ jobs:
 
       - name: Copy most important files to the package directory
         run: |
-          ls
-          echo "======================="
-          echo "======================="
           cp ./target/release/deploy-experiment ./package/
           if [ -d "public" ]; then
             cp -a public package
           fi
           if [ -d "dist" ]; then
-            echo "caiu e deveria copiar o dist"
             cp -a dist package
           fi
           cp package-lock.json ./package/
           cp package.json ./package/
           cp ./www/root.html ./package/www/
           cp ./run.sh ./package/
-          cp ./squarecloud.app ./package/
           echo "console.log('run')" > ./package/main.ts
 
       - name: Setup Square Cloud
@@ -63,9 +58,6 @@ jobs:
       - name: Commit the application to the host
         run: |
           cd package
-          ls
-          echo "==="
-          echo "==="
           squarecloud login --token=${{ secrets.SQUARE_TOKEN }}
           squarecloud commit ${{ secrets.SQUARE_APPLICATION_ID }}
           squarecloud app restart ${{ secrets.SQUARE_APPLICATION_ID }}
