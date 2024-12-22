@@ -35,7 +35,7 @@ jobs:
 
       - name: Setup Square Cloud
         uses: squarecloudofc/github-action@v2
-        working-directory: ./package/
         with:
+          workdir: ./package/
           run: commit ${{ secrets.SQUARE_APPLICATION_ID }} --restart
           token: ${{ secrets.SQUARE_TOKEN }}
