@@ -22,6 +22,14 @@ jobs:
           mkdir ./package
           mkdir ./package/www
 
+      - name: echo things
+        run: |
+          ls
+          echo ""
+          ls ./package
+          echo ""
+          ls ./target/release
+
       - name: Copy most important files to the package directory
         run: |
           cp ./target/release/deploy-experiment ./package/
