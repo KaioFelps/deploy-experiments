@@ -1,0 +1,41 @@
+name: Publish
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish-production:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+
+      - name: Build and bundle the application
+        run: |
+          # build the application
+          rustup update stable
+          rustup default stable
+          cargo build --release
+
+          # make important directories
+          mkdir package
+          mkdir package/www
+
+          # copy important things into it
+          cp ./target/release/deploy-experiment ./package/
+          cp -a ./public ./package
+          cp ./package* ./package/
+          cp ./www/root.html ./package/www/
+          cp ./run.sh ./package/
+          cp ./squarecloud.app ./package/
+
+          # create a fake ts file so that squarecloud recognizes nodejs
+          echo "console.log('run')" > ./package/main.ts
+      - name: Setup Square Cloud
+        working-directory: ./package
+        uses: squarecloudofc/github-action@v2
+        # in the run command you can add the --restart flag to restart your application after the commit 
+        with:
+          run: commit ${{ secrets.SQUARE_APPLICATION_ID }} --restart
+          token: ${{ secrets.SQUARE_TOKEN }}

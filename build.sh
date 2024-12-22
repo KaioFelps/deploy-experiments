@@ -14,6 +14,3 @@ cp ./squarecloud.app ./package/
 
 # create a fake ts file so that squarecloud recognizes nodejs
 echo "console.log('run')" > ./package/main.ts
-
-npm i
-./target/release/deploy-experiment
