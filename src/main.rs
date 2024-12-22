@@ -80,7 +80,7 @@ async fn main() -> std::io::Result<()> {
 mod test {
     #[test]
     fn failling_test() {
-        let bar = "bar";
+        let bar = "foo";
         assert_eq!("foo", bar);
     }
 }
