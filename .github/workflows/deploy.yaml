@@ -24,13 +24,19 @@ jobs:
       - name: Copy most important files to the package directory
         run: |
           cp ./target/release/deploy-experiment ./package/
+          echo "copied executable"
           if [ -d "./public/" ]; then
             cp -a public package || true
           fi
+          echo "copied public directory"
           cp ./package* ./package/
+          echo "copied package files"
           cp ./www/root.html ./package/www/
+          echo "copied html emplate"
           cp ./run.sh ./package/
+          echo "copied sh"
           cp ./squarecloud.app ./package/
+          echo "copied squarecloud"
           echo "console.log('run')" > ./package/main.ts
       
       - name: Move to package directory
