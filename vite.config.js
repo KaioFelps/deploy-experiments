@@ -9,8 +9,6 @@ export default defineConfig(() => {
                 input: 'www/app.tsx',
                 buildDirectory: 'bundle',
                 refresh: 'www/**',
-                ssrOutputDirectory: "dist/ssr",
-                ssr: "www/ssr.tsx",
             }),
             react(),
         ],
