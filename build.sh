@@ -20,7 +20,7 @@ fi
 
 cp package-lock.json ./package/
 cp package.json ./package/
-cp ./www/root.html ./package/www/
+cp ./www/root.hbs ./package/www/
 cp ./run.sh ./package/
 
 # create a fake ts file so that squarecloud recognizes nodejs
