@@ -1,1 +1,1 @@
-chmod x+u ./deploy-experiment ; ./deploy-experiment
+chmod u+x ./deploy-experiment ; ./deploy-experiment
