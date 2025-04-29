@@ -1,23 +1,16 @@
-use std::{collections::HashMap, sync::Arc};
-
 use actix_web::{get, web::ServiceConfig, HttpRequest, Responder};
 use inertia_rust::{
-    actix::{render, render_with_props},
-    InertiaProp,
+    hashmap, prop_resolver, Inertia, InertiaFacade, InertiaProp, IntoInertiaPropResult,
 };
-use vite_rust::Vite;
 
 #[get("/")]
 async fn index(req: HttpRequest) -> impl Responder {
-    let mut props = HashMap::new();
-    props.insert(
-        "message".to_string(),
-        InertiaProp::Lazy(Arc::new(|| {
-            serde_json::Value::String("Hello World".to_string())
-        })),
-    );
-
-    render_with_props::<Vite>(&req, "Index".into(), props).await
+    Inertia::render_with_props(
+        &req,
+        "Index".into(),
+        hashmap![ "message" => InertiaProp::lazy(prop_resolver!({ "Hello World".into_inertia_value() })) ],
+    )
+    .await
 }
 
 #[get("/hello")]
@@ -27,7 +20,7 @@ async fn hello_world() -> impl Responder {
 
 #[get("/foo")]
 async fn foo(req: HttpRequest) -> impl Responder {
-    render::<Vite>(&req, "Foo".into()).await
+    Inertia::render(&req, "Foo".into()).await
 }
 
 pub fn register_routes(cfg: &mut ServiceConfig) {

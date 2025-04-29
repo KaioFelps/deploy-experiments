@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-inertia-rust = { version = "0.1", features = ["default", "basic-vite-resolver"] }
+inertia-rust = { version = "2", features = ["actix", "vite-hbs-template-resolver"] }
 actix-web = "4"
 vite-rust = { version = "0.2", features = ["basic-directives"] }
 dotenvy = "0.15.7"
