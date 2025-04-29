@@ -55,7 +55,6 @@ jobs:
 
       - name: Setup Square Cloud
         run: |
-        install-squarecloud-cli
           chmod +x .github/install-squarecloud-cli.sh
           ./.github/install-squarecloud-cli.sh
         
