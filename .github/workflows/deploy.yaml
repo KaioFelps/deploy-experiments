@@ -54,10 +54,10 @@ jobs:
           echo "console.log('run')" > ./package/main.ts
 
       - name: Setup Square Cloud
-        uses: squarecloudofc/github-action@v2
-        with:
-          token: ${{ secrets.SQUARE_TOKEN }}
-          install-only: true
+        run: |
+        install-squarecloud-cli
+          chmod +x .github/install-squarecloud-cli.sh
+          ./.github/install-squarecloud-cli.sh
         
       - name: Commit the application to the host
         run: |
