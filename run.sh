@@ -1,1 +1,1 @@
-npm install ; chmod u+x ./deploy-experiment ; ./deploy-experiment
+./deploy-experiment

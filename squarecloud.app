@@ -1,5 +1,5 @@
 MAIN=./main.ts
-START=chmod u+x ./run.sh ; ./run.sh
+START= ./run.sh
 DISPLAY_NAME=deploy-teste
 DESCRIPTION=teste de deploy utilizando github actions
 VERSION=recommended
